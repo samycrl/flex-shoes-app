@@ -1,25 +1,35 @@
-# Flex Shoes App — Build Guide
-
-## Build APK fără Node.js (doar browser)
-
-### Pasul 1 — Încarcă pe GitHub
-1. Mergi la github.com → Sign In
-2. Click verde "New repository"
-3. Nume: `flex-shoes-app`
-4. Private ✓ → Create repository
-5. Click "uploading an existing file"
-6. Drag & drop TOATE fișierele din acest folder
-7. Commit changes
-
-### Pasul 2 — Conectează Expo EAS
-1. Mergi la expo.dev → Sign In (contul tău: samycrl)
-2. Click "Create a project"
-3. Conectează cu GitHub → alege repo-ul flex-shoes-app
-
-### Pasul 3 — Build APK
-1. În proiectul Expo → "Builds" → "New Build"
-2. Platform: Android
-3. Profile: preview (→ APK direct)
-4. Start Build → aștepți ~15 minute
-5. Descarci APK-ul și instalezi pe telefon
-
+ {
+  "expo": {
+    "name": "Flex Shoes",
+    "slug": "flex-shoes-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": false,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1B6B47"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "ro.flexshoes.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#1B6B47"
+      },
+      "package": "ro.flexshoes.app",
+      "versionCode": 1,
+      "permissions": ["INTERNET", "ACCESS_NETWORK_STATE"]
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4753a421-f71a-49aa-8582-ef66ae7a3e42"
+      }
+    },
+    "owner": "samycrl"
+  }
+}
