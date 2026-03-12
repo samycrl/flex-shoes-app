@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Flex Shoes",
-    "slug": "flex-shoes-app",
+    "slug": "flex-shoes",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
