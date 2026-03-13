@@ -8,7 +8,7 @@
     "userInterfaceStyle": "light",
     "newArchEnabled": false,
     "splash": {
-    "./splash-icon.png"
+     "image": "./splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#1B6B47"
     },
@@ -18,7 +18,7 @@
     },
     "android": {
       "adaptiveIcon": {
-       "./adaptive-icon.png"
+       "foregroundImage": "./adaptive-icon.png",
         "backgroundColor": "#1B6B47"
       },
       "package": "ro.flexshoes.app",
