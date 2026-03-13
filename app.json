@@ -4,7 +4,7 @@
     "slug": "flex-shoes",
     "version": "1.0.0",
     "orientation": "portrait",
-    "./icon.png"
+    "icon": "./icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": false,
     "splash": {
