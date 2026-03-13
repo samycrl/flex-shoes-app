@@ -4,11 +4,11 @@
     "slug": "flex-shoes",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./icon.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": false,
     "splash": {
-      "image": "./splash-icon.png",
+     "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#1B6B47"
     },
@@ -18,7 +18,7 @@
     },
     "android": {
       "adaptiveIcon": {
-       "./adaptive-icon.png"
+       "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#1B6B47"
       },
       "package": "ro.flexshoes.app",
