@@ -53,11 +53,12 @@ const normalizeProduct = (p) => ({
 });
 
 const normalizeCat = (catName = '') => {
-  const n = catName.toLowerCase();
-  if (n.includes('femei') || n.includes('dame') || n.includes('dama')) return 'femei';
-  if (n.includes('barb') || n.includes('bărbați')) return 'barbati';
-  if (n.includes('copii') || n.includes('copil')) return 'copii';
-  if (n.includes('acce') || n.includes('geant') || n.includes('curea')) return 'accesorii';
+  const n = catName.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  if (n.includes('femei') || n.includes('dame') || n.includes('dama') || n.includes('woman') || n.includes('lady')) return 'femei';
+  if (n.includes('barbat') || n.includes('barbati') || n.includes('men') || n.includes('man') || n.includes('baiat')) return 'barbati';
+  if (n.includes('copii') || n.includes('copil') || n.includes('kid') || n.includes('child') || n.includes('junior')) return 'copii';
+  if (n.includes('acces') || n.includes('geant') || n.includes('curea') || n.includes('portofel') || n.includes('bag')) return 'accesorii';
   return 'femei';
 };
 
