@@ -1847,7 +1847,7 @@ const s = StyleSheet.create({
   searchIconBtn: {width:38,height:38,borderRadius:10,alignItems:'center',justifyContent:'center',backgroundColor:L},
   searchInput:   {borderWidth:1.5,borderColor:G,borderRadius:10,paddingHorizontal:14,paddingVertical:10,fontSize:14,backgroundColor:W},
   // Nav
-  nav:           {position:'absolute',bottom:0,left:0,right:0,backgroundColor:W,borderTopWidth:1,borderTopColor:B,flexDirection:'row',height:62,...Platform.select({ios:{paddingBottom:0},android:{}})},
+  nav:           {position:'absolute',bottom:0,left:0,right:0,backgroundColor:W,borderTopWidth:1,borderTopColor:B,flexDirection:'row',height:62,...Platform.select({ios:{})},
   navItem:       {flex:1,alignItems:'center',justifyContent:'center',paddingTop:6},
   navIcon:       {fontSize:20},
   navLbl:        {fontSize:10,fontWeight:'600',color:GR,marginTop:1},
