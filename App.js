@@ -10,6 +10,7 @@ import {
   StyleSheet, Text, View, ScrollView, TouchableOpacity,
   TextInput, FlatList, Image, SafeAreaView, Animated,
   Easing, Pressable, Platform, Switch, ActivityIndicator,
+  Linking
 } from 'react-native';
 import { useState, useRef, useEffect, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -1355,8 +1356,8 @@ function StoreLocationScreen({ onBack }) {
           <Text style={s.subInfoTitle}>⏰  Program</Text>
           <Text style={s.subInfoText}>L–V: 9:00–18:00  ·  Sâmbătă: 10:00–15:00</Text>
         </View>
-        <PressScale style={{marginTop:12}}>
-          <View style={s.mainBtn}><Text style={s.mainBtnTxt}>📱 DESCHIDE ÎN MAPS</Text></View>
+         <PressScale onPress={() => Linking.openURL('https://maps.google.com/?q=Str.+Baladei+5,+Suceava,+Romania')} style={{marginTop:12}}>
+          <View style={s.mainBtn}><Text style={s.mainBtnTxt}>🗺 DESCHIDE ÎN MAPS</Text></View>
         </PressScale>
       </FadeIn>
     </SubScreen>
