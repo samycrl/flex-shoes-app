@@ -51,6 +51,7 @@ const normalizeProduct = (p) => ({
   colors:    parseColors(p.attributes || p.atribute || []),
   img:       p.image_link || p.imagine || p.images?.[0]?.link || '',
   slug:      p.link_product || p.slug || '',
+  description: p.description || p.descriere || p.short_description || '',
 });
 
 const normalizeCat = (catName = '') => {
@@ -616,6 +617,7 @@ function DetailScreen({ product, onBack, onAdd, favorites, toggleFav, setDetail,
       <View style={{padding:16}}>
         <FadeIn><Text style={s.detailBrand}>FLEX SHOES · PIELE NATURALĂ 100%</Text></FadeIn>
         <FadeIn delay={50}><Text style={s.detailName}>{product.name}</Text></FadeIn>
+          {product.description&&<FadeIn delay={70}><Text style={{fontSize:13,color:'#666',lineHeight:20,marginBottom:12}}>{product.description}</Text></FadeIn>}
         <FadeIn delay={90}>
           <View style={{flexDirection:'row',alignItems:'baseline',gap:10,marginBottom:18}}>
             <Text style={[s.detailPrice,product.oldPrice&&{color:RED}]}>{product.price} RON</Text>
@@ -1622,15 +1624,7 @@ function AccountScreen({ favorites, setScreen, addresses, orders=[], profileName
 }
 
 // ─── Orders Screen ────────────────────────────────────────────────────
-const MOCK_ORDERS = [
-  { id:'72341', date:'05 Mar 2026', status:'procesare', items:['Pantofi Damă Eleganți 20151','Balerini Damă Piele Naturală'], total:470, shipping:'Fan Courier' },
-  { id:'71892', date:'28 Feb 2026', status:'expediat',  items:['Ghete Damă Casual 30280'], total:315, shipping:'DPD Romania' },
-  { id:'70234', date:'14 Feb 2026', status:'livrat',    items:['Pantofi Bărbați Eleganți'], total:405, shipping:'Fan Courier' },
-  { id:'69871', date:'02 Feb 2026', status:'livrat',    items:['Ghete Damă Elegante 40103','Geantă Din Piele'], total:700, shipping:'Fan Courier' },
-  { id:'68540', date:'18 Ian 2026', status:'livrat',    items:['Pantofi Damă Casual Confort'], total:255, shipping:'Poșta Română' },
-  { id:'67231', date:'05 Ian 2026', status:'returnat',  items:['Pantofi Damă Eleganți Bordo'], total:350, shipping:'Fan Courier' },
-];
-
+ const MOCK_ORDERS = [];
 const STATUS_CONFIG = {
   procesare: { label:'În procesare', icon:'📦', color:'#B45309', bg:'#FEF3C7' },
   expediat:  { label:'Expediat',     icon:'🚚', color:'#1D4ED8', bg:'#EFF6FF' },
