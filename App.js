@@ -22,7 +22,7 @@ const GOMAG_USER  = 'samuel_samyy@icloud.com';
 const GOMAG_BASE  = `https://${GOMAG_SHOP}/gomag/api`;
 
 const gomagFetch = async (endpoint, params = {}) => {
-  const qs = new URLSearchParams({ per_page: 50, ...params }).toString();
+  const qs = new URLSearchParams({ per_page: 100, ...params }).toString();
   const url = `${GOMAG_BASE}/${endpoint}?${qs}`;
   const res = await fetch(url, {
     headers: {
@@ -134,7 +134,7 @@ function useProducts() {
       pageNum === 1 ? setLoading(true) : setLoadingMore(true);
       const data = await gomagFetch('products', {
         page: pageNum,
-        per_page: 50,
+        
         status: 1,           // doar produse active
         has_stock: 0,        // toate (și fără stoc)
       });
@@ -1420,6 +1420,8 @@ function AccountScreen({ favorites, setScreen, addresses, orders=[], profileName
 
   const login = async ()=>{
     if(!email||!pass) return;
+    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if(!emailValid) { alert('Introdu un email valid!'); return; }
     const u={email,name:name||email.split('@')[0]};
     await AsyncStorage.setItem('fs_user',JSON.stringify(u));
     setName(u.name); setLoggedIn(true);
@@ -1427,6 +1429,8 @@ function AccountScreen({ favorites, setScreen, addresses, orders=[], profileName
 
   const register = async ()=>{
     if(!email||!pass||!name) return;
+    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if(!emailValid) { alert('Introdu un email valid!'); return; }
     const u={email,name};
     await AsyncStorage.setItem('fs_user',JSON.stringify(u));
     setLoggedIn(true);
