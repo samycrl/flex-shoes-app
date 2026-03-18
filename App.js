@@ -18,11 +18,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  // —— Gomag API Config ————————————————————————————
 const GOMAG_TOKEN = '6032bba16f5dde9253703c8466b98810';
 const GOMAG_SHOP  = 'https://www.flex-shoes.ro';
-
 const gomagFetch = async (endpoint, params = {}) => {
   const qs = new URLSearchParams({ per_page: 20, ...params }).toString();
   const url = `https://api.gomag.ro/api/v1/${endpoint}/read/json?${qs}`;
-
   const res = await fetch(url, {
     headers: {
       'Apikey':      GOMAG_TOKEN,
@@ -34,12 +32,6 @@ const gomagFetch = async (endpoint, params = {}) => {
   if (!res.ok) throw new Error(`Gomag API ${res.status}`);
   return res.json();
 };
-    },
-  });
-  if (!res.ok) throw new Error(`Gomag API ${res.status}`);
-  return res.json();
-};
-
 // Normalizează un produs Gomag → formatul intern al aplicației
 const normalizeProduct = (p) => ({
   id:        p.id_product || p.id,
