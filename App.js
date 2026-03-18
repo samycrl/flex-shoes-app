@@ -25,6 +25,7 @@ const gomagFetch = async (endpoint, params = {}) => {
     headers: {
       'Apikey':      GOMAG_TOKEN,
       'ApiShop':     GOMAG_SHOP,
+      'ApiUser':     'samuel_samyy@icloud.com',
       'User-Agent':  'FlexShoesApp/1.0',
       'Accept':      'application/json',
     },
@@ -148,7 +149,7 @@ function useProducts() {
       setHasMore(raw.length === 50);  // dacă a returnat 50, mai sunt pagini
       setApiOnline(true);
     } catch (err) {
-      console.log('Gomag API error:', err.message);
+      Alert.alert('API Error', err.message);
       if (pageNum === 1) {
         setProducts(MOCK_PRODUCTS);   // fallback la mock
         setApiOnline(false);
