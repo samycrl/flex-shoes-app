@@ -15,21 +15,25 @@ import {
 import { useState, useRef, useEffect, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// ─── Gomag API Config ────────────────────────────────────────────────
-const GOMAG_SHOP  = 'www.flex-shoes.ro';
+ // —— Gomag API Config ————————————————————————————
 const GOMAG_TOKEN = '6032bba16f5dde9253703c8466b98810';
-const GOMAG_USER  = 'samuel_samyy@icloud.com';
-const GOMAG_BASE  = `https://${GOMAG_SHOP}/gomag/api`;
+const GOMAG_SHOP  = 'https://www.flex-shoes.ro';
 
 const gomagFetch = async (endpoint, params = {}) => {
-  const qs = new URLSearchParams({ per_page: 100, ...params }).toString();
-  const url = `${GOMAG_BASE}/${endpoint}?${qs}`;
+  const qs = new URLSearchParams({ per_page: 20, ...params }).toString();
+  const url = `https://api.gomag.ro/api/v1/${endpoint}/read/json?${qs}`;
+
   const res = await fetch(url, {
     headers: {
-      'X-Auth-Token': GOMAG_TOKEN,
-      'X-Auth-User':  GOMAG_USER,
-      'User-Agent':   'FlexShoesApp/1.0',
-      'Accept':       'application/json',
+      'Apikey':      GOMAG_TOKEN,
+      'ApiShop':     GOMAG_SHOP,
+      'User-Agent':  'FlexShoesApp/1.0',
+      'Accept':      'application/json',
+    },
+  });
+  if (!res.ok) throw new Error(`Gomag API ${res.status}`);
+  return res.json();
+};
     },
   });
   if (!res.ok) throw new Error(`Gomag API ${res.status}`);
@@ -132,7 +136,7 @@ function useProducts() {
   const fetchPage = useCallback(async (pageNum = 1, append = false) => {
     try {
       pageNum === 1 ? setLoading(true) : setLoadingMore(true);
-      const data = await gomagFetch('products', {
+      const data = await gomagFetch('product', {
         page: pageNum,
         
         status: 1,           // doar produse active
