@@ -131,13 +131,10 @@ function useProducts() {
       pageNum === 1 ? setLoading(true) : setLoadingMore(true);
       const data = await gomagFetch('product', {
         page: pageNum,
-      });
-
+       });
       // Gomag returnează { products: [...] } sau direct array
-       Alert.alert('API Response', JSON.stringify(Object.keys(data || {})));
-const raw = data?.products || data?.data || (Array.isArray(data) ? data : []);
+      const raw = data?.products || data?.data || (Array.isArray(data) ? data : []);
       const normalized = raw.map(normalizeProduct).filter(p => p.name && p.price > 0);
-
       if (append) {
         setProducts(prev => [...prev, ...normalized]);
       } else {
