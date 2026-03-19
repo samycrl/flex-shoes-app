@@ -18,20 +18,32 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  // —— Gomag API Config ————————————————————————————
 const GOMAG_TOKEN = '6032bba16f5dde9253703c8466b98810';
 const GOMAG_SHOP  = 'https://www.flex-shoes.ro';
+
 const gomagFetch = async (endpoint, params = {}) => {
   const qs = new URLSearchParams({ per_page: 20, ...params }).toString();
   const url = `https://api.gomag.ro/api/v1/${endpoint}/read/json?${qs}`;
-  const res = await fetch(url, {
-    headers: {
-      'Apikey':      GOMAG_TOKEN,
-      'ApiShop':     GOMAG_SHOP,
-      'ApiUser':     'samuel_samyy@icloud.com',
-      'User-Agent':  'FlexShoesApp/1.0',
-      'Accept':      'application/json',
-    },
-  });
-  if (!res.ok) throw new Error(`Gomag API ${res.status}`);
-  return res.json();
+  
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10000);
+  
+  try {
+    const res = await fetch(url, {
+      signal: controller.signal,
+      headers: {
+        'Apikey':     GOMAG_TOKEN,
+        'ApiShop':    GOMAG_SHOP,
+        'ApiUser':    'samuel_samyy@icloud.com',
+        'User-Agent': 'FlexShoesApp/1.0',
+        'Accept':     'application/json',
+      },
+    });
+    clearTimeout(timeout);
+    if (!res.ok) throw new Error(`Gomag API ${res.status}`);
+    return res.json();
+  } catch (e) {
+    clearTimeout(timeout);
+    throw e;
+  }
 };
 // Normalizează un produs Gomag → formatul intern al aplicației
 const normalizeProduct = (p) => ({
