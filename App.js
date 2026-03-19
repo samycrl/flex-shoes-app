@@ -141,10 +141,9 @@ function useProducts() {
   const fetchPage = useCallback(async (pageNum = 1, append = false) => {
     try {
       pageNum === 1 ? setLoading(true) : setLoadingMore(true);
-      const data = await gomagFetch('product', {
-        page: pageNum,
-       });
-      // Gomag returnează { products: [...] } sau direct array
+      const data = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=5')
+  .then(r => r.json());
+   Alert.alert('Test Fetch', 'Produse primite: ' + data.length);
       const raw = data?.products || data?.data || (Array.isArray(data) ? data : []);
       const normalized = raw.map(normalizeProduct).filter(p => p.name && p.price > 0);
       if (append) {
