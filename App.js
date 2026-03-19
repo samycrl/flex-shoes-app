@@ -131,11 +131,11 @@ function useProducts() {
       pageNum === 1 ? setLoading(true) : setLoadingMore(true);
       const data = await gomagFetch('product', {
         page: pageNum,
-        has_stock: 0,        // toate (și fără stoc)
       });
 
       // Gomag returnează { products: [...] } sau direct array
-      const raw = data?.products || data?.data || (Array.isArray(data) ? data : []);
+       Alert.alert('API Response', JSON.stringify(Object.keys(data || {})));
+const raw = data?.products || data?.data || (Array.isArray(data) ? data : []);
       const normalized = raw.map(normalizeProduct).filter(p => p.name && p.price > 0);
 
       if (append) {
