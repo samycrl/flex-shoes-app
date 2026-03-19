@@ -131,8 +131,6 @@ function useProducts() {
       pageNum === 1 ? setLoading(true) : setLoadingMore(true);
       const data = await gomagFetch('product', {
         page: pageNum,
-        
-        status: 1,           // doar produse active
         has_stock: 0,        // toate (și fără stoc)
       });
 
@@ -146,7 +144,7 @@ function useProducts() {
         setProducts(normalized);
       }
 
-      setHasMore(raw.length === 50);  // dacă a returnat 50, mai sunt pagini
+      setHasMore(raw.length === 20);  // dacă a returnat 50, mai sunt pagini
       setApiOnline(true);
     } catch (err) {
       Alert.alert('API Error', err.message);
