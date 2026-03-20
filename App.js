@@ -311,7 +311,7 @@ function Header({ onSearch, searchVal, onSearchChange, showSearch }) {
     <View style={s.headerWrap}>
       <View style={s.header}>
         <View>
-          <Text style={s.logo}>Flex Shoes</Text>
+          <Text style={s.logo}>Flex Shoes TEST 123</Text>
           <Text style={s.logoSub}>ZONE · PIELE NATURALĂ</Text>
         </View>
         <PressScale onPress={onSearch}>
