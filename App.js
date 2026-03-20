@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import { useState, useRef, useEffect, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+alert("TEST GLOBAL - APP PORNIT");
  // —— Gomag API Config ————————————————————————————
 const GOMAG_TOKEN = '6032bba16f5dde9253703c8466b98810';
 const GOMAG_SHOP  = 'https://www.flex-shoes.ro';
