@@ -167,7 +167,28 @@ function useProducts() {
     }
   }, []);
 
-  useEffect(() => { fetchPage(1); }, []);
+  useEffect(() => {
+  testAll();
+}, []);
+
+const testAll = async () => {
+  Alert.alert('1', 'App pornit');
+  try {
+    const res = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=5');
+    const data = await res.json();
+    Alert.alert('2', 'Fetch OK: ' + data.length);
+  } catch (e) {
+    Alert.alert('2 ERROR', e.message);
+  }
+  try {
+    const res2 = await fetch('https://api.gomag.ro/api/v1/product/read/json?per_page=2');
+    const data2 = await res2.json();
+    Alert.alert('3', 'Gomag raspunde: ' + JSON.stringify(Object.keys(data2)));
+  } catch (e) {
+    Alert.alert('3 ERROR', e.message);
+  }
+  Alert.alert('4', 'Final test');
+};
 
   const loadMore = () => {
     if (!hasMore || loadingMore) return;
