@@ -146,7 +146,8 @@ function useProducts() {
   headers: {
     'Content-Type': 'application/json',
     'Apikey': '6032bba16f5dde9253703c8466b98810',
-    'Apishop': 'www.flex-shoes.ro'
+    'ApiShop': 'www.flex-shoes.ro',
+    'ApiUser': 'samuel_samyy@icloud.com',
   }
 });
 
@@ -185,7 +186,7 @@ const testAll = async () => {
   const res = await fetch('https://api.gomag.ro/api/v1/product/read/json', {
   headers: {
     'Apikey': '6032bba16f5dde9253703c8466b98810',
-    'ApiShop': 'https://www.flex-shoes.ro',
+    'ApiShop': 'www.flex-shoes.ro',
     'ApiUser': 'samuel_samyy@icloud.com'
   }
 });
