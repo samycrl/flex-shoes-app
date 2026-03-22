@@ -141,17 +141,18 @@ function useProducts() {
   const fetchPage = useCallback(async (pageNum = 1, append = false) => {
     try {
       pageNum === 1 ? setLoading(true) : setLoadingMore(true);
-const data = await fetch('https://api.gomag.ro/api/v1/product/read/json', {
+ const response = await fetch('https://api.gomag.ro/api/v1/product/read/json', {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
     'Apikey': '6032bba16f5dde9253703c8466b98810',
     'Apishop': 'www.flex-shoes.ro'
   }
-})
-  .then(r => r.json());
+});
+
+const data = await response.json();
    Alert.alert('Test Fetch', 'Produse primite: ' + data.length);
-      const raw = Arry.isArray(data) ? data:[ ];
+      const raw = Arry.isArray(data.data) ? data.data:[ ];
       const normalized = raw.map(normalizeProduct).filter(p => p.name && p.price > 0);
       if (append) {
         setProducts(prev => [...prev, ...normalized]);
