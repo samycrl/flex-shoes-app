@@ -182,9 +182,15 @@ const data = await response.json();
 const testAll = async () => {
   Alert.alert('1', 'App pornit');
   try {
-    const res = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=5');
+  const res = await fetch('https://api.gomag.ro/api/v1/product/read/json', {
+  headers: {
+    'Apikey': '6032bba16f5dde9253703c8466b98810',
+    'ApiShop': 'https://www.flex-shoes.ro',
+    'ApiUser': 'samuel_samyy@icloud.com'
+  }
+});
     const data = await res.json();
-    Alert.alert('2', 'Fetch OK: ' + data.length);
+    Alert.alert('2', JSON.stringify(Object.keys(data || {})));
   } catch (e) {
     Alert.alert('2 ERROR', e.message);
   }
