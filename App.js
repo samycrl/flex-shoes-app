@@ -155,6 +155,7 @@ const data = await response.json();
    Alert.alert('Test Fetch', 'Produse primite: ' + data.length);
       const raw = Arry.isArray(data.data) ? data.data:[ ];
       const normalized = raw.map(normalizeProduct).filter(p => p.name && p.price > 0);
+      console.log("PRODUCTS:", normalized);
       if (append) {
         setProducts(prev => [...prev, ...normalized]);
       } else {
@@ -176,8 +177,8 @@ const data = await response.json();
     }
   }, []);
 
-  useEffect(() => {
-  testAll();
+   useEffect(() => {
+  fetchPage(1);
 }, []);
 
 const testAll = async () => {
