@@ -180,6 +180,7 @@ console.log("DATA FULL:", data);
   }, []);
 
    useEffect(() => {
+     console.log("MERGE USE EFFECT");
   fetchPage(1);
 }, []);
 
