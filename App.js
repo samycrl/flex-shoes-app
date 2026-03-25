@@ -139,6 +139,7 @@ function useProducts() {
   const [loadingMore, setLoadingMore] = useState(false);
 
   const fetchPage = useCallback(async (pageNum = 1, append = false) => {
+    console.log("AM AJUNS IN FETCH");
     try {
       pageNum === 1 ? setLoading(true) : setLoadingMore(true);
  const response = await fetch('https://api.gomag.ro/api/v1/product/read/json', {
@@ -150,8 +151,8 @@ function useProducts() {
     'ApiUser': 'samuel_samyy@icloud.com',
   }
 });
-
 const data = await response.json();
+console.log("DATA FULL:", data);
    //Alert.alert('Test Fetch', 'Produse primite: ' + data.length);
       //const raw = Arry.isArray(data.data) ? data.data:[ ];
       const raw = Array.isArray(data) ? data : (data.products || data.data || []);
@@ -183,7 +184,8 @@ const data = await response.json();
 }, []);
 
 const testAll = async () => {
-  Alert.alert('1', 'App pornit');
+console.log("AM AJUNS AICI");
+  //Alert.alert('1', 'App pornit');
   try {
   const res = await fetch('https://api.gomag.ro/api/v1/product/read/json', {
   headers: {
