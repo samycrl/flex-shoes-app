@@ -152,9 +152,10 @@ function useProducts() {
 });
 
 const data = await response.json();
-   Alert.alert('Test Fetch', 'Produse primite: ' + data.length);
-      const raw = Arry.isArray(data.data) ? data.data:[ ];
-      const normalized = raw.map(normalizeProduct).filter(p => p.name && p.price > 0);
+   //Alert.alert('Test Fetch', 'Produse primite: ' + data.length);
+      //const raw = Arry.isArray(data.data) ? data.data:[ ];
+      const raw = Array.isArray(data) ? data : (data.products || data.data || []);
+      const normalized = raw.map(normalizeProduct) //.filter(p => p.name && p.price > 0);
       console.log("PRODUCTS:", normalized);
       if (append) {
         setProducts(prev => [...prev, ...normalized]);
@@ -165,7 +166,7 @@ const data = await response.json();
       setHasMore(raw.length === 20);  // dacă a returnat 50, mai sunt pagini
       setApiOnline(true);
     } catch (err) {
-      Alert.alert('API Error', err.message);
+      //Alert.alert('API Error', err.message);
       if (pageNum === 1) {
         setProducts(MOCK_PRODUCTS);   // fallback la mock
         setApiOnline(false);
@@ -192,7 +193,8 @@ const testAll = async () => {
   }
 });
     const data = await res.json();
-    Alert.alert('2', JSON.stringify(Object.keys(data || {})));
+    console.log("DATA FULL:", data);
+    //Alert.alert('2', JSON.stringify(Object.keys(data || {})));
   } catch (e) {
     Alert.alert('2 ERROR', e.message);
   }
@@ -1869,8 +1871,18 @@ export default function App() {
       <StatusBar style="light"/>
       <Header onSearch={()=>setShowSrch(v=>!v)} searchVal={search} onSearchChange={setSearch} showSearch={showSrch}/>
       <View style={{flex:1,backgroundColor:L}}>
-        <ScreenFade k={screen}>{renderScreen()}</ScreenFade>
-      </View>
+
+  <Text>TEST PRODUSE:</Text>
+
+  {products.map((product, index) => (
+    <Text key={index}>
+      {product.name} - {product.price}
+    </Text>
+  ))}
+
+  <ScreenFade k={screen}>{renderScreen()}</ScreenFade>
+
+</View>
       {!hideNav&&<BottomNav screen={screen} setScreen={nav} favCount={favCount} cartCount={cartCount}/>}
       {toast&&<Toast item={toast} onHide={()=>setToast(null)}/>}
     </SafeAreaView>
